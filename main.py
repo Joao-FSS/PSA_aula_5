@@ -35,7 +35,7 @@ def is_full(board):
 
 
 #TODO: have winner
-def have_winner(board)
+def have_winner(board):
     pass
 
 
