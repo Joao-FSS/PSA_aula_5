@@ -28,6 +28,8 @@ def play(board, player, cell):
         print('invalid play, cell ' + cell +' is ocupied')
         return False
 
+
+
 def is_full(board):
     num_occupied = 0
     cells = ['00', '01', '02', '10', '11', '12', '20', '21', '22']
@@ -40,6 +42,8 @@ def is_full(board):
         return True
     else:
         return False
+
+
 
 def have_winner(b):
 
@@ -101,18 +105,43 @@ def main():
     cells = ['00', '01', '02', '10', '11', '12', '20', '21', '22']
     # for cell in cells:
     #     play(board, 'x', cell)
-    play(board, 'x', '00')
-    print(have_winner(board))
-    play(board, 'x', '11')
-    print(have_winner(board))
-    play(board, 'x', '22')
-    print(have_winner(board))
+
+    #game start
+
+    p= 'x' 
+
+    while True:
+
+        draw_board(board)
+
+        #invalid/valid plays
+        while True:
+
+            print('player ' + p + ' make a play')
+            cell= input()
+
+            if play(board, p , cell):
+                break
 
 
-
+        #check if we have winner
+        if have_winner(board):
+            break
     
+        if is_full(board):
+            print('game tied')
+            break
+
+        # flip flop variable
+        if p =='x':
+            p='o'
+        else:
+            p='x'
+
+
+
     draw_board(board)
-    print(is_full(board))
+    
 
 if __name__ == "__main__":
     main()
