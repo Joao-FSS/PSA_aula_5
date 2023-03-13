@@ -28,18 +28,57 @@ def play(board, player, cell):
         print('invalid play, cell ' + cell +' is ocupied')
         return False
 
-
-#TODO: check if board is full
 def is_full(board):
-    pass
+    num_occupied = 0
+    cells = ['00', '01', '02', '10', '11', '12', '20', '21', '22']
+    for cell in cells:
+        if not board[cell] == ' ':
+            num_occupied += 1
 
+    if num_occupied == 9:
+        print('Board is full')
+        return True
+    else:
+        return False
 
-#TODO: have winner
-def have_winner(board):
-    pass
+def have_winner(b):
 
+    for p in ['x', 'o']:
 
+        # Horizontal lines
+        if b['00'] == p and b['01'] == p and b['02'] == p:
+            print('Player ' + p + ' has won!!!')
+            return p
+        
+        if b['10'] == p and b['11'] == p and b['12'] == p:
+            print('Player ' + p + ' has won!!!')
+            return p
 
+        if b['20'] == p and b['21'] == p and b['22'] == p:
+            print('Player ' + p + ' has won!!!')
+            return p
+
+        # Vertical lines
+        if b['00'] == p and b['10'] == p and b['20'] == p:
+            print('Player ' + p + ' has won!!!')
+            return p
+
+        if b['01'] == p and b['11'] == p and b['21'] == p:
+            print('Player ' + p + ' has won!!!')
+            return p
+ 
+        if b['02'] == p and b['12'] == p and b['22'] == p:
+            print('Player ' + p + ' has won!!!')
+            return p
+ 
+        # Diagonal lines
+        if b['00'] == p and b['11'] == p and b['22'] == p:
+            print('Player ' + p + ' has won!!!')
+            return p
+
+        if b['02'] == p and b['11'] == p and b['20'] == p:
+            print('Player ' + p + ' has won!!!')
+            return p
 
 
 def main():
@@ -58,12 +97,22 @@ def main():
     
     draw_board(board)
     #TODO: create game mechanism
-    play(board, 'x', '21')
-    play(board, 'o', '11')
-    play(board, 'x', '01')
-    play(board, 'x', '21')
+
+    cells = ['00', '01', '02', '10', '11', '12', '20', '21', '22']
+    # for cell in cells:
+    #     play(board, 'x', cell)
+    play(board, 'x', '00')
+    print(have_winner(board))
+    play(board, 'x', '11')
+    print(have_winner(board))
+    play(board, 'x', '22')
+    print(have_winner(board))
+
+
+
     
     draw_board(board)
+    print(is_full(board))
 
 if __name__ == "__main__":
     main()
